@@ -1,0 +1,22 @@
+---
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+import { site } from '../data/site';
+const { title = `${site.name} | ${site.role}`, description = site.tagline } = Astro.props;
+---
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{title}</title><meta name="description" content={description}><meta property="og:title" content={title}><meta property="og:description" content={description}>
+<link rel="icon" href="/favicon.svg">
+<script is:inline>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script></head>
+<body><header class="nav wrap"><a class="brand" href="/">Momin</a>
+<nav><a href="/#about">About</a><a href="/projects">Projects</a><a href="/#experience">Experience</a><a href="/#contact">Contact</a></nav>
+<div class="right"><a class="btn sm" href="/Momin-Resume.pdf" download>Download CV</a><button id="tt" aria-label="Switch light or dark mode">◐</button></div></header>
+<main><slot /></main>
+<script is:inline>document.getElementById('tt').onclick=function(){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}}</script>
+<script is:inline>(()=>{const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const els=document.querySelectorAll('section h2,.card,.tl>div,.skills>div,.two>*,.contact a,.mq,.proj .cover,.prose');
+els.forEach(e=>{e.classList.add('rv');e.style.setProperty('--d',[...e.parentNode.children].indexOf(e)*90+'ms')});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});els.forEach(e=>io.observe(e));
+document.querySelectorAll('.card').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');if(!rm){c.style.setProperty('--ry',(x/r.width-.5)*7+'deg');c.style.setProperty('--rx',(.5-y/r.height)*7+'deg')}});c.addEventListener('mouseleave',()=>{c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')})});
+const t=document.getElementById('rot');if(t&&!rm){const w=t.dataset.w.split('|');let i=0,j=0,d=0;t.textContent='';(function k(){const s=w[i];j+=d?-1:1;t.textContent=s.slice(0,j);let ms=d?35:75;if(!d&&j===s.length){d=1;ms=1700}else if(d&&j===0){d=0;i=(i+1)%w.length;ms=300}setTimeout(k,ms)})()}})()</script>
+</body></html>

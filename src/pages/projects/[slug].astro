@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths() {
+  const all = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+  return all.map((p, i) => ({ params: { slug: p.id }, props: { p, prev: all[i - 1], next: all[i + 1] } }));
+}
+const { p, prev, next } = Astro.props; const d = p.data; const { Content } = await render(p);
+---
+<Base title={`${d.title} | Momin`} description={d.summary}><div class="wrap proj"><section>
+<p class="hello">{d.status}, {d.date}</p><h1>{d.title}</h1><p class="sum">{d.summary}</p>
+<div class="links" style="max-width:34rem;margin:1.5rem 0 0;border:0;padding:0">{d.liveUrl && <span class="u"><b>Live</b>{d.liveUrl.replace('https://','')}</span>}{d.liveUrl && <a class="btn sm" href={d.liveUrl} target="_blank" rel="noopener">Open site</a>}{d.repoUrl && <span class="u"><b>GitHub</b>{d.repoUrl.replace('https://','')}</span>}{d.repoUrl && <a class="btn sm ghost" href={d.repoUrl} target="_blank" rel="noopener">Open repo</a>}</div>
+<img class="cover" src={d.cover} alt={`${d.title} screenshot`}>
+<div class="tags" style="margin-bottom:1rem">{d.tags.map((t: string) => <span>{t}</span>)}</div>
+<div class="prose"><Content /></div>
+<div class="pn"><span>{prev && <a href={`/projects/${prev.id}`}>Previous: {prev.data.title}</a>}</span><span>{next && <a href={`/projects/${next.id}`}>Next: {next.data.title}</a>}</span></div>
+</section></div></Base>

@@ -1,0 +1,8 @@
+---
+const { p } = Astro.props; const d = p.data;
+const url = d.liveUrl ?? d.repoUrl;
+---
+<article class="card"><img src={d.cover} alt={`${d.title} preview`} loading="lazy">
+<div class="body"><h3><a href={`/projects/${p.id}`}>{d.title}</a></h3><p>{d.summary}</p>
+<div class="tags">{d.tags.map((t: string) => <span>{t}</span>)}</div>
+<div class="links"><span class="u"><b>{d.liveUrl ? 'Live' : 'GitHub'}</b>{url.replace('https://', '')}</span><a href={url} target="_blank" rel="noopener">Open</a></div></div></article>

@@ -1,0 +1,7 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+const all = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Projects | Momin"><div class="wrap"><section><h2>Projects</h2><div class="grid">{all.map(p => <ProjectCard p={p} />)}</div></section></div></Base>
