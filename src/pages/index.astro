@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
-import { site, experience, skills, certs } from '../data/site';
+import Certs from '../components/Certs.astro';
+import { site, experience, skills } from '../data/site';
 const featured = (await getCollection('projects')).filter(p => p.data.featured).sort((a, b) => a.data.order - b.data.order);
 const tech=['AWS','Python','Java','C++','SQL','Dart','Git','Vercel','Apps Script','Streamlit','Pandas','Networking'];
 ---
@@ -16,7 +17,7 @@ const tech=['AWS','Python','Java','C++','SQL','Dart','Git','Vercel','Apps Script
 <section id="about"><h2>About</h2><div class="two"><p>{site.about}</p><div><h3>Education</h3><p>B.Tech, Computer Science & Engineering, Amity University Uttar Pradesh, 2023 to 2027. CGPA 8.41.</p></div></div></section>
 <section id="work"><h2>Selected projects</h2><div class="grid">{featured.map(p => <ProjectCard p={p} />)}</div><p style="margin-top:1.5rem"><a class="btn ghost" href="/projects">All projects</a></p></section>
 <section id="experience"><h2>Experience</h2><div class="tl">{experience.map(e => <div><h3>{e.role}</h3><p class="meta">{e.org}, {e.when}</p><ul>{e.points.map(x => <li>{x}</li>)}</ul></div>)}</div></section>
-<section id="skills"><h2>Skills</h2><div class="skills">{skills.map(s => <div><h3>{s.group}</h3><p>{s.items.join(', ')}</p></div>)}</div>
-<h3 style="margin:3rem 0 .8rem">Certifications</h3><ul class="prose">{certs.map(c => <li>{c}</li>)}</ul></section>
+<section id="skills"><h2>Skills</h2><div class="skills">{skills.map(s => <div><h3>{s.group}</h3><p>{s.items.join(', ')}</p></div>)}</div></section>
+<Certs />
 <section id="contact" class="contact"><h2>Contact</h2><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.github}>GitHub</a><a href={site.linkedin}>LinkedIn</a></section>
 </div></Base>

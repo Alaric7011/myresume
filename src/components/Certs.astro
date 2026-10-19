@@ -1,0 +1,24 @@
+---
+import '../styles/certs.css';
+const certs = [
+  { main: true, name: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'Issued Jun 2026, valid until Jun 2029', img: '/certs/aws.jpg', note: 'Validation number: dc98ba450f5942819c9bd1da1503b6a0', verify: 'https://aws.amazon.com/verification' },
+  { name: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy, through Amity University', date: 'Dec 2025', img: '/certs/ccna.jpg' },
+  { name: 'EricssonEdge Academia Program', issuer: 'Ericsson', date: '2026', img: '/certs/ericsson.jpg' },
+  { name: 'Python for Data Science', issuer: 'NPTEL, IIT Madras', date: 'Jan - Feb 2024', img: '/certs/nptel.jpg', note: 'Elite certificate, 86% overall, top 2% of the course' },
+];
+---
+<section id="certifications"><h2>Certifications</h2>
+<div class="certs">{certs.map(c => (
+  <article class:list={['card', 'cert', { aws: c.main }]}>
+    <button class="thumb" data-img={c.img} data-title={c.name} aria-label={`View ${c.name} certificate`}><img src={c.img} alt={`${c.name} certificate`} loading="lazy"></button>
+    <div class="body"><h3>{c.name}</h3><p>{c.issuer}</p><p class="d">{c.date}</p>{c.note && <p class="n">{c.note}</p>}
+      <div class="links"><span class="u"><b>{c.verify ? 'Verify' : 'Certificate'}</b>{c.verify ? c.verify.replace('https://', '') : 'View full size'}</span>
+      {c.verify ? <a href={c.verify} target="_blank" rel="noopener">Open</a> : <button class="lnk" data-img={c.img} data-title={c.name}>Open</button>}</div></div>
+  </article>))}
+</div>
+<dialog id="cv"><form method="dialog"><button class="x">Close</button></form><img alt=""></dialog>
+<script is:inline>
+(function(){var d=document.getElementById('cv');if(!d)return;
+document.querySelectorAll('.cert [data-img]').forEach(function(b){b.addEventListener('click',function(){var i=d.querySelector('img');i.src=b.dataset.img;i.alt=b.dataset.title||'';d.showModal()})});
+d.addEventListener('click',function(e){if(e.target===d)d.close()})})();
+</script></section>
