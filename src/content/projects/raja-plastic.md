@@ -1,5 +1,6 @@
 ---
 title: Raja Plastic
+cover: /projects/raja_plastic.jpg
 summary: A wholesale catalogue site for a client with 200+ products, managed by the client through Google Sheets.
 order: 1
 featured: true
@@ -7,7 +8,6 @@ tags: [HTML, CSS, JavaScript, Apps Script, Vercel]
 status: Live
 liveUrl: https://raja-plastic.vercel.app
 date: Aug 2026 - Present
-cover: /projects/raja-plastic.jpg
 ---
 ## Overview
 A live catalogue for a wholesale plastics business. It is built with vanilla HTML, CSS and JavaScript on purpose, so it stays fast, cheap to run and deploys to Vercel with a single push.
