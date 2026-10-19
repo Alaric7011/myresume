@@ -511,7 +511,7 @@ footer {
 @keyframes morph {
     to {
         border-radius: 63% 37% 40% 60%/55% 60% 40% 45%;
-        transform: rotate(50deg) scale(1.12)
+        transform: scale(1.06)
     }
 }
 
@@ -706,4 +706,4 @@ html.js .rv.in {
         right: 0
     }
 }
-html{overflow-x:clip}
+html,body{overflow-x:hidden}
