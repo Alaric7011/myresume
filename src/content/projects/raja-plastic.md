@@ -7,7 +7,7 @@ tags: [HTML, CSS, JavaScript, Apps Script, Vercel]
 status: Live
 liveUrl: https://raja-plastic.vercel.app
 date: Aug 2026 - Present
-cover: /public/raja_plastic.png
+cover: /projects/raja-plastic.png
 ---
 ## Overview
 A live catalogue for a wholesale plastics business. It is built with vanilla HTML, CSS and JavaScript on purpose, so it stays fast, cheap to run and deploys to Vercel with a single push.
