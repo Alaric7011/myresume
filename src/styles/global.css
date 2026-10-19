@@ -201,7 +201,7 @@ section {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(310px,100%),1fr));
     gap: 1.5rem
 }
 
@@ -353,9 +353,10 @@ section {
 
 .contact a {
     display: block;
-    font: 600 2rem 'Manrope Variable', sans-serif;
+    font: 600 clamp(1.25rem,5.5vw,2rem) 'Manrope Variable', sans-serif;
     letter-spacing: -.02em;
     text-decoration: none;
+    overflow-wrap:anywhere;
     margin-bottom: .4rem
 }
 
@@ -705,3 +706,4 @@ html.js .rv.in {
         right: 0
     }
 }
+html{overflow-x:clip}
