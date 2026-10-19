@@ -17,6 +17,3 @@ A live catalogue for a wholesale plastics business. It is built with vanilla HTM
 - Google Sheets and Drive act as the data layer, so the client updates products without a developer.
 - A 6-page Apps Script admin panel handles product management.
 - An automated backup runs every 2 days.
-
-## Notes
-Replace this section with screenshots and what you learned.
